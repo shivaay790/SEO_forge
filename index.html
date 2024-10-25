@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Forge - AI-Powered SEO Optimization</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>SEO Forge</h1>
+        <p>Forging the Future of SEO with AI-Driven Insights</p>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Search Intent Analysis -->
+        <section class="feature-card">
+            <h2>Search Intent Analysis</h2>
+            <input type="text" id="intent-query" placeholder="Enter search query...">
+            <button onclick="analyzeIntent()">Analyze Intent</button>
+            <div id="intent-output" class="output-box"></div>
+        </section>
+
+        <!-- Voice Search Optimization -->
+        <section class="feature-card">
+            <h2>Voice Search Optimization</h2>
+            <button onclick="startVoiceRecognition()">Start Voice Search</button>
+            <div id="voice-output" class="output-box">Voice result will display here.</div>
+        </section>
+
+        <!-- Content Gap Analysis -->
+        <section class="feature-card">
+            <h2>Content Gap Analysis</h2>
+            <textarea id="keywords-input" placeholder="Enter keywords separated by commas..."></textarea>
+            <button onclick="getKeywordGaps()">Find Content Gaps</button>
+            <div id="gaps-output" class="output-box">Suggested keywords will display here.</div>
+        </section>
+
+        <!-- Snippet Optimization -->
+        <section class="feature-card">
+            <h2>Snippet Optimization</h2>
+            <p>Ensure content is snippet-friendly for featured results.</p>
+            <ul>
+                <li>Use ordered lists for step-by-step guides.</li>
+                <li>Implement Q&A format for FAQs.</li>
+                <li>Keep answers concise and to the point.</li>
+            </ul>
+        </section>
+
+        <!-- Mobile Optimization -->
+        <section class="feature-card">
+            <h2>Mobile Optimization</h2>
+            <input type="text" id="mobile-url" placeholder="Enter website URL...">
+            <button onclick="checkMobileOptimization()">Check Mobile Optimization</button>
+            <div id="mobile-output" class="output-box">Mobile performance score will display here.</div>
+        </section>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
