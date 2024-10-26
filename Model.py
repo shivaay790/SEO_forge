@@ -20,8 +20,9 @@ kw_model = KeyBERT('distilbert-base-nli-mean-tokens')
 tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
 model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
 
-# Replace with your actual API key and external user ID
-api_key = 'u9uaQQMRR2vAnAn1YVhJ3p7WydJv5NEA'
+##############################################################################
+api_key = 'u9uaQQMRR2vAnAn1YVhJ3p7WydJv5NEA'   """ API KEY OF OnDemand""" ####
+##############################################################################
 external_user_id = '<replace_external_user_id>'
 
 # Function to create a chat session
