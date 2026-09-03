@@ -7,6 +7,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import numpy as np
 import logging
+import os
+import sys
+import argparse
+
+from dotenv import load_dotenv
 from transformers import BartTokenizer, BartForConditionalGeneration
 
 # Configure logging
@@ -20,10 +25,14 @@ kw_model = KeyBERT('distilbert-base-nli-mean-tokens')
 tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
 model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
 
-##############################################################################
-api_key = '***REMOVED***'   """ API KEY OF OnDemand""" ####
-##############################################################################
-external_user_id = '<replace_external_user_id>'
+# ---------------------------------------------------------------------------
+# Credentials are read from the environment. Copy .env.example to .env and
+# fill in your own values -- never hardcode keys in this file.
+# ---------------------------------------------------------------------------
+load_dotenv()
+
+api_key = os.getenv("ONDEMAND_API_KEY")
+external_user_id = os.getenv("ONDEMAND_EXTERNAL_USER_ID")
 
 # Function to create a chat session
 def create_chat_session(api_key, external_user_id):
@@ -133,8 +142,24 @@ def mobile_optimization_suggestions():
 
 # Main Pipeline
 def main():
-    user_url = "https://en.wikipedia.org/wiki/Health"
-    competitor_urls = ["https://www.wikihow.com/Be-Healthy", "https://www.wikihow.com/Category:Health"]
+    parser = argparse.ArgumentParser(
+        description="Analyse a page against competitor pages and produce SEO recommendations."
+    )
+    parser.add_argument("--url", required=True, help="URL of the page you want to analyse")
+    parser.add_argument(
+        "--competitors", nargs="*", default=[],
+        help="Zero or more competitor URLs to compare against",
+    )
+    args = parser.parse_args()
+
+    if not api_key or not external_user_id:
+        sys.exit(
+            "Missing credentials. Copy .env.example to .env and set "
+            "ONDEMAND_API_KEY and ONDEMAND_EXTERNAL_USER_ID."
+        )
+
+    user_url = args.url
+    competitor_urls = args.competitors
 
     user_content = extract_content(user_url)
     competitor_contents = [extract_content(url) for url in competitor_urls]
